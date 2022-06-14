@@ -1,4 +1,5 @@
 import { Header } from './components';
+import { LayoutCards } from './components/LayoutCards';
 import { useFetch } from './hook';
 
 const App = () => {
@@ -8,14 +9,7 @@ const App = () => {
   return (
     <div>
       <Header/>
-      {
-        (data.length > 0) && data.map( ({ id, image, name }) => (
-          <div key={id}> 
-            <img src={image} alt={image} /> 
-            <p>{name}</p> 
-          </div>
-        ))
-      }
+      <LayoutCards data={data} />
     </div>
   )
 }
