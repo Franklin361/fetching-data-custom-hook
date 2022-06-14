@@ -1,5 +1,4 @@
-import { ErrorMessage, Header, Loading, Profile } from './components';
-import { LayoutCards } from './components/LayoutCards';
+import { ErrorMessage, Header, Loading, Profile, LayoutCards } from './components'
 import { useFetch } from './hook';
 
 const App = () => {
@@ -8,8 +7,7 @@ const App = () => {
 
   const showData =  () => {
     if (loading) return <Loading/>
-    if (error) return <ErrorMessage msg={'asdasd'}/>
-    
+    if (error) return <ErrorMessage msg={error}/>
     return <LayoutCards data={data} />
   }
 
