@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { DataState, Response } from '../interface';
 
-const url = 'https://rickandmortyapi.com/api/character/?page=8';
+const url = 'https://rickandmortyapi.com/api/character/?page=18';
 
 export const useFetch = () => {
+
     const [dataState, setDataState] = useState<DataState>({
         data: [],
         loading: true,
@@ -14,16 +15,24 @@ export const useFetch = () => {
         async () => {
             try {
                 const response = await fetch(url);
-                const { results }: Response = await response.json();
-                setDataState({
+                
+                if(!response.ok) throw new Error(response.statusText);
+                
+                const dataApi: Response = await response.json();
+
+                setDataState( prev => ({
+                    ...prev,
                     loading: false,
-                    error: null,
-                    data: results
-                });
+                    data: dataApi.results
+                }));
+
             } catch (error) {
-                console.log(error)
-                const e = error as Error
-                console.log(e.message);
+                
+                setDataState( prev => ({
+                    ...prev,
+                    loading: false,
+                    error: (error as Error).message
+                }));
             }
         },
         [],

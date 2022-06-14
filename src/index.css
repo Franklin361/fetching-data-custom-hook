@@ -5,16 +5,127 @@ body{
   background-color: rgb(12, 10, 19);
   color: #f2f2f2;
   font-family: Arial, Helvetica, sans-serif;
+  display: grid;
+  place-items: center;
+  text-align: center;
 }
 
 /* header */
-
+.title{
+  margin-top: 1.5em;
+  font-weight: bold;
+  font-size: 3.8em;
+}
+.subtitle{
+  display: block;
+  font-weight: bold;
+  font-size: 2em;
+  color: rgba(255, 255, 255, 0.41);
+  margin-bottom: 1.5em;
+}
 /* layout cards */
-
+.container-cards{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 1em auto;
+}
 /* card */
-
+.card{
+  flex: 1;
+}
+.card > img {
+  border-radius: 5px;
+  vertical-align: top;
+  width: 200px;
+  object-fit: cover;
+}
+.card > p{
+  border-radius: 5px;
+  font-weight: bold;
+  width: 200px;
+  margin: .5em  auto 0 auto;
+  padding: .5em 0;
+  background-color: rgb(0, 0, 0);
+}
 /* loading */
-
+.loading, .error-msg{
+  font-weight: bold;
+  font-size: 1.5em;
+  color: rgb(255, 255, 255);
+  background-color: slateblue;
+  width: fit-content;
+  margin: auto;
+  padding: 1em;
+  border-radius: 10px;
+}
 /* error msg */
-
+.error-msg{
+  background-color: rgb(235, 57, 57);
+}
 /* profile */
+.container-profile{
+  background-color: rgb(0, 0, 0);
+  position: fixed;
+  top: 1.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  text-decoration: none;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
+  border-radius: 25px;
+  outline: 2px solid rgb(53, 53, 53);
+  outline-offset: 2px;
+}
+.container-profile > p{
+  padding: 0 1em 0 0;
+  font-weight: bold;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+.container-profile > p > span {
+  font-size: .8em;
+  color: rgb(209, 206, 206);
+}
+.container-profile:hover > img{
+  transform-origin: center bottom;
+  animation: bounce 1s linear infinite;
+}
+
+@keyframes bounce {
+  from,
+  20%,
+  53%,
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0);
+  }
+
+  40%,
+  43% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -30px, 0) scaleY(1.1);
+  }
+
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: translate3d(0, -15px, 0) scaleY(1.05);
+  }
+
+  80% {
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: translate3d(0, 0, 0) scaleY(0.95);
+  }
+
+  90% {
+    transform: translate3d(0, -4px, 0) scaleY(1.02);
+  }
+}
+

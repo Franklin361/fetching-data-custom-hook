@@ -1,12 +1,12 @@
 
-import { Result } from "../hook"
+import { Result } from '../interface';
 
 
-export const Card = ({ id, image, name }:Result) => {
+export const Card = ({ image, name }:Result) => {
     
     return (
-        <div>
-            <img src={image} alt={image} />
+        <div className='card'>
+            <img src={image} alt={image} width={100} />
             <p>{name}</p>
         </div>
     )

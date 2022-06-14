@@ -6,6 +6,7 @@ export const Profile = () => {
                 alt='profile'
                 width={50}
             />
+            <p> <span>Created by: </span> Franklin Martinez</p>
         </a>
     )
 }
