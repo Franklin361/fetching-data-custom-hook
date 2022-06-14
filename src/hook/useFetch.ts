@@ -1,28 +1,40 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { DataState, Response } from '../interface';
 
-interface Response {
-    results: Result[]
-}
-
-export interface Result {
-    id: number;
-    name: string;
-    image: string;
-}
+const url = 'https://rickandmortyapi.com/api/character/?page=8';
 
 export const useFetch = () => {
-    const [data, setData] = useState<Result[]>([]);
+    const [dataState, setDataState] = useState<DataState>({
+        data: [],
+        loading: true,
+        error: null
+    });
+
+    const handleFetch = useCallback(
+        async () => {
+            try {
+                const response = await fetch(url);
+                const { results }: Response = await response.json();
+                setDataState({
+                    loading: false,
+                    error: null,
+                    data: results
+                });
+            } catch (error) {
+                console.log(error)
+                const e = error as Error
+                console.log(e.message);
+            }
+        },
+        [],
+    )
+
 
     useEffect(() => {
-        fetch('https://rickandmortyapi.com/api/character/?page=8')
-            .then(res => res.json())
-            .then((res: Response) => {
-                setData(res.results);
-            })
-            .catch(console.log)
+        if (dataState.data.length === 0) handleFetch();
     }, []);
 
     return {
-        data
+        ...dataState
     }
 }
