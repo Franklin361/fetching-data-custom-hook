@@ -1,3 +1,4 @@
+import { Header } from './components';
 import { useFetch } from './hook';
 
 const App = () => {
@@ -6,8 +7,7 @@ const App = () => {
 
   return (
     <div>
-      <h1 className="title">Fetching data and create custom Hook</h1>
-      <span className="subtitle">using Rick and Morty API</span>
+      <Header/>
       {
         (data.length > 0) && data.map( ({ id, image, name }) => (
           <div key={id}> 

@@ -4,7 +4,7 @@ interface Response {
     results: Result[]
 }
 
-interface Result {
+export interface Result {
     id: number;
     name: string;
     image: string;
